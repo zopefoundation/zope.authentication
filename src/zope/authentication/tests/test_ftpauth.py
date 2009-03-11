@@ -49,6 +49,11 @@ class Test(TestCase):
         auth.needLogin('xxx')
         self.assertEqual(request.unauth, unauth+1)
 
+        request = FTPCredentials(None)
+        auth = FTPAuth(request)
+        self.assertEqual(auth.getLogin(), None)
+        self.assertEqual(auth.getPassword(), None)
+
 def test_suite():
     return TestSuite((
         makeSuite(Test),

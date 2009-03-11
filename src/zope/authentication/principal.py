@@ -26,7 +26,34 @@ from zope.authentication.interfaces import PrincipalLookupError
 
 
 def checkPrincipal(context, principal_id):
-    """An utility function to check if there's a principal for given principal id"""
+    """An utility function to check if there's a principal for given principal id.
+    
+    Raises ValueError when principal doesn't exists for given context and
+    principal id.
+
+    To test it, let's create and register a dummy authentication utility.
+    
+      >>> class DummyUtility:
+      ...
+      ...     implements(IAuthentication)
+      ...
+      ...     def getPrincipal(self, id):
+      ...         if id == 'bob':
+      ...             return id
+      ...         raise PrincipalLookupError(id)
+
+      >>> from zope.component import provideUtility
+      >>> provideUtility(DummyUtility())
+
+    Now, let's the behaviour of this function.
+    
+      >>> checkPrincipal(None, 'bob')
+      >>> checkPrincipal(None, 'dan')
+      Traceback (most recent call last):
+      ...
+      ValueError: ('Undefined principal id', 'dan')
+    
+    """
     auth = getUtility(IAuthentication, context=context)
     try:
         if auth.getPrincipal(principal_id):
@@ -60,9 +87,7 @@ class PrincipalSource(object):
         ...             return id
         ...         raise PrincipalLookupError(id)
 
-        Since we do not want to bring up the entire component architecture, we
-        simply monkey patch the `getUtility()` method to always return our
-        dummy authentication utility.
+        Let's register our dummy auth utility.
 
         >>> from zope.component import provideUtility
         >>> provideUtility(DummyUtility())
@@ -157,6 +182,7 @@ class PrincipalTerms(object):
         principal = auth.getPrincipal(principal_id)
 
         if principal is None:
+            # TODO: is this a possible case?
             raise LookupError(principal_id)
 
         return PrincipalTerm(principal_id.encode('base64').strip().replace('=', '_'),

@@ -71,3 +71,7 @@ This class merely serves as a flag as it implements ILogoutSupported:
   >>> from zope.authentication.interfaces import ILogoutSupported
   >>> ILogoutSupported.implementedBy(LogoutSupported)
   True
+
+  >>> request = object()
+  >>> ILogoutSupported.providedBy(LogoutSupported(request))
+  True
