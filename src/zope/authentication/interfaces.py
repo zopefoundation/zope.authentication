@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2004 Zope Corporation and Contributors.
+# Copyright (c) 2009 Zope Corporation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,17 +11,18 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Zope Application-specific Security Interfaces
+"""Authentication interfaces
 
 $Id$
 """
 from zope.interface import Interface
-from zope.security.interfaces import IPrincipal, IPermission, IGroup
+from zope.security.interfaces import IPrincipal, IGroup
 from zope.schema.interfaces import ISource
 
+
 class PrincipalLookupError(LookupError):
-    """A prncipal could not be found for a principal id
-    """
+    """No principal for given principal id"""
+
 
 class IUnauthenticatedPrincipal(IPrincipal):
     """A principal that hasn't been authenticated.
@@ -36,21 +37,20 @@ class IFallbackUnauthenticatedPrincipal(IUnauthenticatedPrincipal):
     This principal can be used by publications to set on a request if
     no principal, not even an unauthenticated principal, was returned
     by any authentication utility to fulfill the contract of IApplicationRequest.
-
     """
 
 
 class IUnauthenticatedGroup(IGroup):
-    """A group containing unauthenticated users
-    """
+    """A group containing unauthenticated users"""
+
 
 class IAuthenticatedGroup(IGroup):
-    """A group containing authenticated users
-    """
+    """A group containing authenticated users"""
+
 
 class IEveryoneGroup(IGroup):
-    """A group containing all users
-    """
+    """A group containing all users"""
+
 
 class IAuthentication(Interface):
     """Provide support for establishing principals for requests.
@@ -90,13 +90,11 @@ class IAuthentication(Interface):
         based on user names and passwords might request
         an adapter for the request as in::
 
-          getpw=getAdapter(request,
-                       ILoginPassword, place=self)
+          getpw = getAdapter(request, context=self)
 
-        The place keyword argument is used to control
-        where the ILoginPassword component is
-        searched for. This is necessary because
-        requests are placeless.
+        The `context` keyword argument is used to control
+        where the ILoginPassword component is searched for.
+        This is necessary because requests are placeless.
         """
 
     def unauthenticatedPrincipal():
@@ -104,7 +102,7 @@ class IAuthentication(Interface):
 
         Return None if no unauthenticated principal is defined.
 
-        The unauthenticated principal must be an IUnauthenticatedPrincipal.
+        The unauthenticated principal must provide IUnauthenticatedPrincipal.
         """
 
     def unauthorized(id, request):
@@ -142,7 +140,7 @@ class IAuthentication(Interface):
 class ILoginPassword(Interface):
     """A password based login.
 
-    An `IAuthentication` would use this (adapting a request),
+    An `IAuthentication` utility may use this (adapting a request),
     to discover the login/password passed from the user, or to
     indicate that a login is required.
     """

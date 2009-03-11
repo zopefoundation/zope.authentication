@@ -17,7 +17,8 @@ $Id$
 """
 from zope.component import adapts
 from zope.publisher.interfaces.http import IHTTPCredentials
-from zope.app.security.loginpassword import LoginPassword
+
+from zope.authentication.loginpassword import LoginPassword
 
 
 class BasicAuthAdapter(LoginPassword):

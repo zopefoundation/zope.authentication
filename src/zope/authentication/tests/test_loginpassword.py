@@ -17,7 +17,7 @@ $Id$
 """
 import unittest
 
-from zope.app.security.loginpassword import LoginPassword
+from zope.authentication.loginpassword import LoginPassword
 
 class Test(unittest.TestCase):
 

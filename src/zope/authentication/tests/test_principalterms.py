@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2004 Zope Corporation and Contributors.
+# Copyright (c) 2009 Zope Corporation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,22 +11,16 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Security Views Tests
+"""Tests for PrincipalTerms
 
 $Id$
 """
 __docformat__ = "reStructuredText"
 import unittest
 from zope.testing import doctest
-from zope.app.testing import placelesssetup
+
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocFileSuite('principalterms.txt',
-                             setUp=placelesssetup.setUp,
-                             tearDown=placelesssetup.tearDown),
+        doctest.DocFileSuite('../principalterms.txt'),
         ))
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
-

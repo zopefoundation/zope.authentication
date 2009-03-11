@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2001, 2002 Zope Corporation and Contributors.
+# Copyright (c) 2009 Zope Corporation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,14 +11,19 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Login/Password provider
+"""Login/Password provider. 
 
 $Id$
 """
 from zope.interface import implements
-from zope.app.security.interfaces import ILoginPassword
+from zope.authentication.interfaces import ILoginPassword
+
 
 class LoginPassword(object):
+    """Basic ILoginPassword implementation.
+    
+    This class can be used as a base for implementing ILoginPassword adapters.
+    """
 
     implements(ILoginPassword)
 
@@ -27,7 +32,7 @@ class LoginPassword(object):
         if login is None:
             self.__password = None
         else:
-            self.__password = password or ""
+            self.__password = password or ''
 
     def getLogin(self):
         return self.__login

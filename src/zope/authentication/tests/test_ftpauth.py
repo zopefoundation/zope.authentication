@@ -17,8 +17,9 @@ $Id$
 """
 from unittest import TestCase, TestSuite, main, makeSuite
 from zope.publisher.interfaces.ftp import IFTPCredentials
-from zope.app.security.ftpauth import FTPAuth
 from zope.interface import implements
+
+from zope.authentication.ftpauth import FTPAuth
 
 class FTPCredentials(object):
     __doc__ = IFTPCredentials.__doc__

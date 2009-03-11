@@ -3,7 +3,7 @@
     i18n_domain="zope"
     >
 
-  <adapter factory=".NoLogout" />
+  <adapter factory=".logout.NoLogout" />
 
   <adapter
       factory=".basicauthadapter.BasicAuthAdapter"
@@ -17,9 +17,6 @@
       for="zope.publisher.interfaces.ftp.IFTPCredentials"
       />
 
-  <utility
-      component=".principalregistry.fallback_unauthenticated_principal"
-      provides=".interfaces.IFallbackUnauthenticatedPrincipal"
-      />
+  <adapter factory=".principal.PrincipalTerms" />
 
 </configure>

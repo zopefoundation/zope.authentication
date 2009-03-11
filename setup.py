@@ -32,17 +32,9 @@ setup(name='zope.authentication',
           'Detailed Documentation\n' +
           '======================\n'
           + '\n\n' +
-          read('src', 'zope', 'app', 'security', 'globalprincipals.txt')
+          read('src', 'zope', 'authentication', 'logout.txt')
           + '\n\n' +
-          read('src', 'zope', 'app', 'security', 'logout.txt')
-          + '\n\n' +
-          read('src', 'zope', 'app', 'security', 'browser',
-               'authutilitysearchview.txt')
-          + '\n\n' +
-          read('src', 'zope', 'app', 'security', 'browser', 'loginlogout.txt')
-          + '\n\n' +
-          read('src', 'zope', 'app', 'security', 'browser',
-               'principalterms.txt')
+          read('src', 'zope', 'authentication', 'principalterms.txt')
           + '\n\n' +
           read('CHANGES.txt')
           ),
@@ -68,6 +60,15 @@ setup(name='zope.authentication',
                         'zope.i18nmessageid',
                         'zope.interface',
                         'zope.schema',
+                        
+                        'zope.publisher', # XXX: this is for ILoginPassword
+                                          # adapters that should be moved
+                                          # elsewhere, probably to zope.publisher
+
+                        'zope.site', # XXX: this shouldn't be needed
+                        'zope.app.component', # XXX: this is for testing, until
+                        'zope.app.testing',   # we got testingNextUtility in
+                                              # a sane place or rewrite tests.
                         ],
       include_package_data = True,
       zip_safe = False,

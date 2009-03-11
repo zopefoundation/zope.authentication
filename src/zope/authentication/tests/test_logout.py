@@ -15,14 +15,13 @@
 $Id$
 """
 import unittest
-
 from zope.testing import doctest
-from zope.interface import implements
+
 from zope.component import provideAdapter, adapts
+from zope.interface import implements
 from zope.publisher.tests.httprequest import TestRequest
 
-from zope.app.testing import placelesssetup
-from zope.app.security import interfaces
+from zope.authentication.interfaces import IAuthentication
 
 
 def test_suite():
@@ -33,13 +32,7 @@ def test_suite():
                    'TestRequest': TestRequest,
                    'implements': implements,
                    'adapts': adapts,
-                   'IAuthentication': interfaces.IAuthentication
+                   'IAuthentication': IAuthentication
                   },
-            setUp=placelesssetup.setUp,
-            tearDown=placelesssetup.tearDown,
             ),
         ))
-
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')

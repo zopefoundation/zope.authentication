@@ -17,7 +17,7 @@ $Id$
 """
 import unittest
 
-from zope.app.security.basicauthadapter import BasicAuthAdapter
+from zope.authentication.basicauthadapter import BasicAuthAdapter
 
 class Request(object):
 

@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2004 Zope Corporation and Contributors.
+# Copyright (c) 2009 Zope Corporation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,32 +11,18 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Doctests for 'permission' module.
+"""Test for principal lookup related functionality
 
 $Id$
 """
 import unittest
-import doctest
+from zope.testing.doctestunit import DocTestSuite
 
-def test_bbb_imports():
-    """
-    Let's test that backward-compatibility imports still work:
-    
-      >>> from zope.app.security import permission as old
-      >>> from zope.localpermission import permission as new
-    
-      >>> old.NULL_ID is new.NULL_ID
-      True
-      >>> old.LocalPermission is new.LocalPermission
-      True
-      >>> old.setIdOnActivation is new.setIdOnActivation
-      True
-      >>> old.unsetIdOnDeactivation is new.unsetIdOnDeactivation
-      True
-
-    """
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocTestSuite(),
+        DocTestSuite('zope.authentication.principal'),
         ))
+
+if __name__ == '__main__':
+    unittest.main(defaultTest='test_suite')
