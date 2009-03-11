@@ -19,11 +19,6 @@ from zope.component import adapts
 from zope.interface import implements, Interface
 from zope.app.security import interfaces
 
-# Register some standard types
-import _protections
-_protections.protect()
-del _protections
-
 
 class LogoutSupported(object):
     """A class that can be registered as an adapter to flag logout support."""

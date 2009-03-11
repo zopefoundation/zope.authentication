@@ -28,10 +28,6 @@ from zope.app.security.interfaces import IAuthentication
 from zope.app.security.interfaces import IPrincipalSource
 from zope.app.security.interfaces import PrincipalLookupError
 
-# BBB: these vocabularies are moved to zope.security.
-from zope.security.permission import PermissionsVocabulary
-from zope.security.permission import PermissionIdsVocabulary
-
 
 class PrincipalSource(object):
     """Generic Principal Source"""
