@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Setup for zope.app.security package
+"""Setup for zope.authentication package
 
 $Id$
 """
@@ -21,11 +21,11 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-setup(name='zope.app.security',
+setup(name='zope.authentication',
       version = '3.7.0dev',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
-      description='Security Components for Zope 3 Applications',
+      description='Definition of authentication basics for Zope Framework',
       long_description=(
           read('README.txt')
           + '\n\n' +
@@ -46,7 +46,7 @@ setup(name='zope.app.security',
           + '\n\n' +
           read('CHANGES.txt')
           ),
-      keywords = "zope3 security authentication principal ftp http",
+      keywords = "zope security authentication",
       classifiers = [
           'Development Status :: 5 - Production/Stable',
           'Environment :: Web Environment',
@@ -57,31 +57,17 @@ setup(name='zope.app.security',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
           'Framework :: Zope3'],
-      url='http://pypi.python.org/pypi/zope.app.security',
+      url='http://pypi.python.org/pypi/zope.authentication',
       license='ZPL 2.1',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
-      namespace_packages=['zope', 'zope.app'],
-      extras_require=dict(test=['zope.app.testing']),
+      namespace_packages=['zope'],
       install_requires=['setuptools',
                         'zope.browser',
-                        'zope.app.component',
-                        'zope.app.form',
-                        'zope.app.pagetemplate',
-                        'zope.app.publisher',
                         'zope.component',
-                        'zope.configuration',
-                        'zope.container',
-                        'zope.i18n',
                         'zope.i18nmessageid',
                         'zope.interface',
-                        'zope.localpermission',
-                        'zope.password',
-                        'zope.publisher',
                         'zope.schema',
-                        'zope.security',
-                        'zope.site',
-                        'ZODB3',
                         ],
       include_package_data = True,
       zip_safe = False,

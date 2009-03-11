@@ -1,2 +1,2 @@
-This package provides several components integrating the Zope security
-implementation into zope 3 applications.
+This package provides a definition of authentication concepts for use in
+Zope Framework.
