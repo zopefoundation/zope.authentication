@@ -16,10 +16,9 @@
 $Id$
 """
 from zope.browser.interfaces import ITerms
-from zope.component import getUtility, adapts
+from zope.component import getUtility, queryNextUtility, adapts
 from zope.interface import implements, Interface
 from zope.schema.interfaces import ISourceQueriables
-from zope.site.next import queryNextUtility # XXX: move this to zope.component
 
 from zope.authentication.interfaces import IAuthentication, IPrincipalSource
 from zope.authentication.interfaces import PrincipalLookupError
@@ -135,7 +134,7 @@ class PrincipalSource(object):
         ...         return ('4', 4),
         >>> dummy3 = DummyUtility3()
 
-        >>> from zope.app.component.testing import testingNextUtility
+        >>> from zope.component.nexttesting import testingNextUtility
         >>> testingNextUtility(dummy1, dummy2, IAuthentication)
         >>> testingNextUtility(dummy2, dummy3, IAuthentication)
 
