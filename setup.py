@@ -56,14 +56,11 @@ setup(name='zope.authentication',
       namespace_packages=['zope'],
       install_requires=['setuptools',
                         'zope.browser',
-                        'zope.component',
+                        'zope.component>=3.6.0',
                         'zope.i18nmessageid',
                         'zope.interface',
                         'zope.schema',
-                        
-                        'zope.publisher', # XXX: this is for ILoginPassword
-                                          # adapters that should be moved
-                                          # elsewhere, probably to zope.publisher
+                        'zope.security',
                         ],
       include_package_data = True,
       zip_safe = False,

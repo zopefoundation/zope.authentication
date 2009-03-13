@@ -19,7 +19,6 @@ from zope.testing import doctest
 
 from zope.component import provideAdapter, adapts
 from zope.interface import implements
-from zope.publisher.tests.httprequest import TestRequest
 
 from zope.authentication.interfaces import IAuthentication
 
@@ -29,7 +28,7 @@ def test_suite():
         doctest.DocFileSuite(
             '../logout.txt',
             globs={'provideAdapter': provideAdapter,
-                   'TestRequest': TestRequest,
+                   'TestRequest': object,
                    'implements': implements,
                    'adapts': adapts,
                    'IAuthentication': IAuthentication
