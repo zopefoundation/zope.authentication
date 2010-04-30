@@ -14,8 +14,8 @@
 """
 $Id$
 """
+import doctest
 import unittest
-from zope.testing import doctest
 
 from zope.component import provideAdapter, adapts
 from zope.interface import implements
