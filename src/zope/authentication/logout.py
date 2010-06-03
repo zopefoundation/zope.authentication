@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """ILogout implementations
-
-$Id$
 """
 from zope.component import adapts
 from zope.interface import implements, Interface

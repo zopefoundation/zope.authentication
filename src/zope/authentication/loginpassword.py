@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Login/Password provider. 
-
-$Id$
 """
 from zope.interface import implements
 from zope.authentication.interfaces import ILoginPassword

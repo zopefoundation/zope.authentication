@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test for principal lookup related functionality
-
-$Id$
 """
 import doctest
 import unittest

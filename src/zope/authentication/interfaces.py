@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Authentication interfaces
-
-$Id$
 """
 from zope.interface import Interface
 from zope.security.interfaces import IPrincipal, IGroup

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Principal source and helper function
-
-$Id$
 """
 from zope.browser.interfaces import ITerms
 from zope.component import getUtility, queryNextUtility, adapts
