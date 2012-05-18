@@ -13,18 +13,18 @@
 ##############################################################################
 """ILogout implementations
 """
-from zope.component import adapts
-from zope.interface import implements, Interface
+from zope.component import adapter
+from zope.interface import implementer, Interface
 
 from zope.authentication.interfaces import IAuthentication
 from zope.authentication.interfaces import ILogout, ILogoutSupported
 
 
+@adapter(IAuthentication)
+@implementer(ILogout)
 class NoLogout(object):
     """An adapter for IAuthentication utilities that don't implement ILogout."""
 
-    adapts(IAuthentication)
-    implements(ILogout)
 
     def __init__(self, auth):
         pass
@@ -33,11 +33,11 @@ class NoLogout(object):
         pass
 
 
+@adapter(Interface)
+@implementer(ILogoutSupported)
 class LogoutSupported(object):
     """A class that can be registered as an adapter to flag logout support."""
 
-    adapts(Interface)
-    implements(ILogoutSupported)
 
     def __init__(self, dummy):
         pass

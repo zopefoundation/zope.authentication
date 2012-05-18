@@ -13,17 +13,17 @@
 ##############################################################################
 """Login/Password provider. 
 """
-from zope.interface import implements
+from zope.interface import implementer
 from zope.authentication.interfaces import ILoginPassword
 
 
+@implementer(ILoginPassword)
 class LoginPassword(object):
     """Basic ILoginPassword implementation.
     
     This class can be used as a base for implementing ILoginPassword adapters.
     """
 
-    implements(ILoginPassword)
 
     def __init__(self, login, password):
         self.__login = login

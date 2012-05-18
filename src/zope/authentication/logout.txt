@@ -12,10 +12,9 @@ The current use of ILogout is to adapt an IAuthentication component to ILogout
 To illustrate, we'll create a simple logout implementation that adapts
 IAuthentication:
 
-  >>> class SimpleLogout(object):
-  ...
-  ...     adapts(IAuthentication)
-  ...     implements(ILogout)
+  >>> @adapter(IAuthentication)
+  ... @implementer(ILogout)
+  ... class SimpleLogout(object):
   ...
   ...     def __init__(self, auth):
   ...         pass
@@ -27,9 +26,9 @@ IAuthentication:
 
 and something to represent an authentication utility:
 
-  >>> class Authentication(object):
-  ...
-  ...     implements(IAuthentication)
+  >>> @implementer(IAuthentication)
+  ... class Authentication(object):
+  ...     pass
 
   >>> auth = Authentication()
 

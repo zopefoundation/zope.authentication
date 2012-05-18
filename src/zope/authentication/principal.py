@@ -14,8 +14,8 @@
 """Principal source and helper function
 """
 from zope.browser.interfaces import ITerms
-from zope.component import getUtility, queryNextUtility, adapts
-from zope.interface import implements, Interface
+from zope.component import getUtility, queryNextUtility, adapter
+from zope.interface import implementer, Interface
 from zope.schema.interfaces import ISourceQueriables
 
 from zope.authentication.interfaces import IAuthentication, IPrincipalSource
@@ -30,9 +30,8 @@ def checkPrincipal(context, principal_id):
 
     To test it, let's create and register a dummy authentication utility.
     
-      >>> class DummyUtility:
-      ...
-      ...     implements(IAuthentication)
+      >>> @implementer(IAuthentication)
+      ... class DummyUtility:
       ...
       ...     def getPrincipal(self, id):
       ...         if id == 'bob':
@@ -60,10 +59,9 @@ def checkPrincipal(context, principal_id):
     raise ValueError("Undefined principal id", principal_id)
 
 
+@implementer(IPrincipalSource, ISourceQueriables)
 class PrincipalSource(object):
     """Generic Principal Source"""
-
-    implements(IPrincipalSource, ISourceQueriables)
 
     def __contains__(self, id):
         """Test for the existence of a user.
@@ -77,8 +75,8 @@ class PrincipalSource(object):
         First we need to create a dummy utility that will return a user, if
         the id is 'bob'.
 
-        >>> class DummyUtility:
-        ...     implements(IAuthentication)
+        >>> @implementer(IAuthentication)
+        ... class DummyUtility:
         ...     def getPrincipal(self, id):
         ...         if id == 'bob':
         ...             return id
@@ -113,21 +111,21 @@ class PrincipalSource(object):
         various queriables). This method will walk up through all of the
         authentication utilities to look for queriables.
 
-        >>> class DummyUtility1:
-        ...     implements(IAuthentication)
+        >>> @implementer(IAuthentication)
+        ... class DummyUtility1:
         ...     __parent__ = None
         ...     def __repr__(self): return 'dummy1'
         >>> dummy1 = DummyUtility1()
 
-        >>> class DummyUtility2:
-        ...     implements(ISourceQueriables, IAuthentication)
+        >>> @implementer(ISourceQueriables, IAuthentication)
+        ... class DummyUtility2:
         ...     __parent__ = None
         ...     def getQueriables(self):
         ...         return ('1', 1), ('2', 2), ('3', 3)
         >>> dummy2 = DummyUtility2()
 
-        >>> class DummyUtility3(DummyUtility2):
-        ...     implements(IAuthentication)
+        >>> @implementer(IAuthentication)
+        ... class DummyUtility3(DummyUtility2):
         ...     def getQueriables(self):
         ...         return ('4', 4),
         >>> dummy3 = DummyUtility3()
@@ -163,10 +161,10 @@ class PrincipalSource(object):
             i += 1
 
 
+@implementer(ITerms)
+@adapter(IPrincipalSource, Interface)
 class PrincipalTerms(object):
 
-    implements(ITerms)
-    adapts(IPrincipalSource, Interface)
 
     def __init__(self, context, request):
         self.context = context

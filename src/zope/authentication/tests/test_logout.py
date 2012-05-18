@@ -17,8 +17,8 @@ Logout Test
 import doctest
 import unittest
 
-from zope.component import provideAdapter, adapts
-from zope.interface import implements
+from zope.component import provideAdapter, adapter
+from zope.interface import implementer
 
 from zope.authentication.interfaces import IAuthentication
 
@@ -29,8 +29,8 @@ def test_suite():
             '../logout.txt',
             globs={'provideAdapter': provideAdapter,
                    'TestRequest': object,
-                   'implements': implements,
-                   'adapts': adapts,
+                   'implementer': implementer,
+                   'adapter': adapter,
                    'IAuthentication': IAuthentication
                   },
             ),
