@@ -130,7 +130,7 @@ class PrincipalSource(object):
         ...         return ('4', 4),
         >>> dummy3 = DummyUtility3()
 
-        >>> from zope.component.nexttesting import testingNextUtility
+        >>> from zope.authentication.tests.utils import testingNextUtility
         >>> testingNextUtility(dummy1, dummy2, IAuthentication)
         >>> testingNextUtility(dummy2, dummy3, IAuthentication)
 
