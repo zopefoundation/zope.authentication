@@ -5,6 +5,10 @@ CHANGES
 4.0.0 (unreleased)
 ------------------
 
+- Broke inappropriate testing dependency on ``zope.component.nextutility``.
+
+  (Forward-compatibility with ``zope.component`` 4.0.0).
+
 - Replaced deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
 
