@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-4.0.0 (unreleased)
+4.0.0 (2012-07-04)
 ------------------
 
 - Broke inappropriate testing dependency on ``zope.component.nextutility``.
