@@ -14,11 +14,21 @@
 """Test for principal lookup related functionality
 """
 import doctest
+import re
 import unittest
+from zope.testing import renormalizing
+
+checker = renormalizing.RENormalizing([
+    # Python 3 strings remove the "u".
+    (re.compile("u('.*?')"),
+     r"\1"),
+    (re.compile('u(".*?")'),
+     r"\1"),
+    ])
 
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocTestSuite('zope.authentication.principal'),
-        doctest.DocFileSuite('../principalterms.txt'),
+        doctest.DocTestSuite('zope.authentication.principal', checker=checker),
+        doctest.DocFileSuite('../principalterms.txt', checker=checker),
         ))

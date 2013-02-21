@@ -13,6 +13,7 @@
 ##############################################################################
 """Principal source and helper function
 """
+import base64
 from zope.browser.interfaces import ITerms
 from zope.component import getUtility, queryNextUtility, adapter
 from zope.interface import implementer, Interface
@@ -21,15 +22,20 @@ from zope.schema.interfaces import ISourceQueriables
 from zope.authentication.interfaces import IAuthentication, IPrincipalSource
 from zope.authentication.interfaces import PrincipalLookupError
 
+try:
+    unicode
+except NameError:
+    # Py3: define unicode.
+    unicode = str
 
 def checkPrincipal(context, principal_id):
     """An utility function to check if there's a principal for given principal id.
-    
+
     Raises ValueError when principal doesn't exists for given context and
     principal id.
 
     To test it, let's create and register a dummy authentication utility.
-    
+
       >>> @implementer(IAuthentication)
       ... class DummyUtility:
       ...
@@ -42,13 +48,13 @@ def checkPrincipal(context, principal_id):
       >>> provideUtility(DummyUtility())
 
     Now, let's the behaviour of this function.
-    
+
       >>> checkPrincipal(None, 'bob')
       >>> checkPrincipal(None, 'dan')
       Traceback (most recent call last):
       ...
       ValueError: ('Undefined principal id', 'dan')
-    
+
     """
     auth = getUtility(IAuthentication, context=context)
     try:
@@ -169,6 +175,18 @@ class PrincipalTerms(object):
     def __init__(self, context, request):
         self.context = context
 
+    def _encode(self, id):
+        # Py3: In Python 2, principal_id can be a str, but in Python 3 it is
+        # always unicode/str.
+        if isinstance(id, unicode):
+            id = id.encode('utf-8')
+
+        res = base64.b64encode(id).strip().replace(b'=', b'_')
+        return res.decode()
+
+    def _decode(self, token):
+        return base64.b64decode(token.replace('_', '=').encode()).decode('utf-8')
+
     def getTerm(self, principal_id):
         if principal_id not in self.context:
             raise LookupError(principal_id)
@@ -180,11 +198,10 @@ class PrincipalTerms(object):
             # TODO: is this a possible case?
             raise LookupError(principal_id)
 
-        return PrincipalTerm(principal_id.encode('base64').strip().replace('=', '_'),
-                             principal.title)
+        return PrincipalTerm(self._encode(principal_id), principal.title)
 
     def getValue(self, token):
-        return token.replace('_', '=').decode('base64')
+        return self._decode(token)
 
 
 class PrincipalTerm(object):

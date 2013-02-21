@@ -20,7 +20,7 @@ IAuthentication:
   ...         pass
   ...
   ...     def logout(self, request):
-  ...         print 'User has logged out'
+  ...         print('User has logged out')
 
   >>> provideAdapter(SimpleLogout)
 

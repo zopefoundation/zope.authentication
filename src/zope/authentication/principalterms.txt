@@ -16,7 +16,7 @@ create an authentication utility to demonstrate how this works:
   >>> from zope.authentication.interfaces import PrincipalLookupError
   >>> @implementer(IAuthentication)
   ... class AuthUtility:
-  ...     data = {'jim': 'Jim Fulton', 'stephan': 'Stephan Richter'}
+  ...     data = {u'jim': u'Jim Fulton', u'stephan': u'Stephan Richter'}
   ...
   ...     def getPrincipal(self, id):
   ...         title = self.data.get(id)
@@ -49,7 +49,7 @@ Now we can create an terms view:
 
 Now we can ask the terms view for terms:
 
-  >>> term = terms.getTerm('stephan')
+  >>> term = terms.getTerm(u'stephan')
   >>> term.title
   'Stephan Richter'
   >>> term.token
