@@ -35,7 +35,7 @@ def alltests():
     return unittest.TestSuite(suites)
 
 setup(name='zope.authentication',
-      version='4.1.0',
+      version='4.1.1.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Definition of authentication basics for the Zope Framework',
