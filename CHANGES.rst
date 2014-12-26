@@ -1,7 +1,7 @@
 Changes
 =======
 
-4.2.0 (unreleased)
+4.2.0 (2014-12-26)
 ------------------
 
 - Add support for PyPy.  PyPy3 support is blocked on a release of a fix for:
