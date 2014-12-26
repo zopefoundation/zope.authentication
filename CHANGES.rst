@@ -1,41 +1,40 @@
-=======
-CHANGES
+Changes
 =======
 
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for testing on Travis.
 
 
 4.1.0 (2013-02-21)
 ------------------
 
-- Added Python 3.3 support.
+- Add support for Python 3.3.
 
-- Added tox.ini and MANIFEST.in.
+- Add ``tox.ini`` and ``MANIFEST.in``.
 
 
 4.0.0 (2012-07-04)
 ------------------
 
-- Broke inappropriate testing dependency on ``zope.component.nextutility``.
+- Break inappropriate testing dependency on ``zope.component.nextutility``.
 
   (Forward-compatibility with ``zope.component`` 4.0.0).
 
-- Replaced deprecated ``zope.component.adapts`` usage with equivalent
+- Replace deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
 
-- Replaced deprecated ``zope.interface.implements`` usage with equivalent
+- Replace deprecated ``zope.interface.implements`` usage with equivalent
   ``zope.interface.implementer`` decorator.
 
-- Dropped support for Python 2.4 and 2.5.
+- Drop support for Python 2.4 and 2.5.
 
 
 3.7.1 (2010-04-30)
 ------------------
 
-- Removed undeclared testing dependency on zope.testing.
+- Remove undeclared testing dependency on ``zope.testing``.
 
 3.7.0 (2009-03-14)
 ------------------
