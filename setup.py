@@ -17,7 +17,8 @@ import os
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 def alltests():
     import os
@@ -40,7 +41,7 @@ setup(name='zope.authentication',
       author_email='zope-dev@zope.org',
       description='Definition of authentication basics for the Zope Framework',
       long_description=(
-          read('README.txt')
+          read('README.rst')
           + '\n\n' +
           'Detailed Documentation\n' +
           '======================\n'
@@ -49,7 +50,7 @@ setup(name='zope.authentication',
           + '\n\n' +
           read('src', 'zope', 'authentication', 'principalterms.txt')
           + '\n\n' +
-          read('CHANGES.txt')
+          read('CHANGES.rst')
           ),
       keywords = "zope security authentication",
       classifiers = [
