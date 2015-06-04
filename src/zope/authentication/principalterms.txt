@@ -16,7 +16,7 @@ create an authentication utility to demonstrate how this works:
   >>> from zope.authentication.interfaces import PrincipalLookupError
   >>> @implementer(IAuthentication)
   ... class AuthUtility:
-  ...     data = {'jim': u'Jim Fulton', 'stephan': u'Stephan Richter'}
+  ...     data = {'jim': 'Jim Fulton', 'stephan': 'Stephan Richter'}
   ...
   ...     def getPrincipal(self, id):
   ...         title = self.data.get(id)
