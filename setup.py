@@ -43,13 +43,6 @@ setup(name='zope.authentication',
       long_description=(
           read('README.rst')
           + '\n\n' +
-          'Detailed Documentation\n' +
-          '======================\n'
-          + '\n\n' +
-          read('src', 'zope', 'authentication', 'logout.txt')
-          + '\n\n' +
-          read('src', 'zope', 'authentication', 'principalterms.txt')
-          + '\n\n' +
           read('CHANGES.rst')
           ),
       keywords = "zope security authentication",

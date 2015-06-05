@@ -11,27 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+""" Logout Test
 """
-Logout Test
-"""
-import doctest
 import unittest
-
-from zope.component import provideAdapter, adapter
-from zope.interface import implementer
-
-from zope.authentication.interfaces import IAuthentication
 
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocFileSuite(
-            '../logout.txt',
-            globs={'provideAdapter': provideAdapter,
-                   'TestRequest': object,
-                   'implementer': implementer,
-                   'adapter': adapter,
-                   'IAuthentication': IAuthentication
-                  },
-            ),
         ))

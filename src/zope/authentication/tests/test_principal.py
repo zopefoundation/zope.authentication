@@ -30,5 +30,4 @@ checker = renormalizing.RENormalizing([
 def test_suite():
     return unittest.TestSuite((
         doctest.DocTestSuite('zope.authentication.principal', checker=checker),
-        doctest.DocFileSuite('../principalterms.txt', checker=checker),
         ))
