@@ -16,9 +16,11 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
+
 
 def alltests():
     import os
@@ -35,6 +37,7 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
+
 setup(name='zope.authentication',
       version='4.3.0.dev0',
       author='Zope Foundation and Contributors',
@@ -44,9 +47,9 @@ setup(name='zope.authentication',
           read('README.rst')
           + '\n\n' +
           read('CHANGES.rst')
-          ),
-      keywords = "zope security authentication",
-      classifiers = [
+      ),
+      keywords="zope security authentication",
+      classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Web Environment',
           'Intended Audience :: Developers',
@@ -67,12 +70,12 @@ setup(name='zope.authentication',
       url='http://pypi.python.org/pypi/zope.authentication',
       license='ZPL 2.1',
       packages=find_packages('src'),
-      package_dir = {'': 'src'},
+      package_dir={'': 'src'},
       namespace_packages=['zope'],
       extras_require=dict(
           test=[
               'zope.testing',
-              ]),
+          ]),
       install_requires=['setuptools',
                         'zope.browser',
                         'zope.component>=3.6.0',
@@ -81,11 +84,11 @@ setup(name='zope.authentication',
                         'zope.schema',
                         'zope.security',
                         ],
-      tests_require = [
+      tests_require=[
           'zope.testing',
           'zope.testrunner',
-          ],
-      test_suite = '__main__.alltests',
-      include_package_data = True,
-      zip_safe = False,
+      ],
+      test_suite='__main__.alltests',
+      include_package_data=True,
+      zip_safe=False,
       )
