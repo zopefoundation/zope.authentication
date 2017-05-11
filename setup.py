@@ -39,7 +39,7 @@ def alltests():
 
 
 setup(name='zope.authentication',
-      version='4.3',
+      version='4.4.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Definition of authentication basics for the Zope Framework',
