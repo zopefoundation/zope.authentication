@@ -1,14 +1,15 @@
-Changes
-=======
+=========
+ Changes
+=========
 
-4.4 (unreleased)
-----------------
+4.4.0 (unreleased)
+==================
 
-- Nothing changed yet.
+- Host documentation at https://zopeauthentication.readthedocs.io
 
 
-4.3 (2017-05-11)
-----------------
+4.3.0 (2017-05-11)
+==================
 
 - Add support for Python 3.5 and 3.6.
 
@@ -16,13 +17,13 @@ Changes
 
 
 4.2.1 (2015-06-05)
-------------------
+==================
 
 - Add support for PyPy3 and Python 3.2.
 
 
 4.2.0 (2014-12-26)
-------------------
+==================
 
 - Add support for PyPy.  PyPy3 support is blocked on a release of a fix for:
   https://bitbucket.org/pypy/pypy/issue/1946
@@ -33,7 +34,7 @@ Changes
 
 
 4.1.0 (2013-02-21)
-------------------
+==================
 
 - Add support for Python 3.3.
 
@@ -41,7 +42,7 @@ Changes
 
 
 4.0.0 (2012-07-04)
-------------------
+==================
 
 - Break inappropriate testing dependency on ``zope.component.nextutility``.
 
@@ -57,12 +58,12 @@ Changes
 
 
 3.7.1 (2010-04-30)
-------------------
+==================
 
 - Remove undeclared testing dependency on ``zope.testing``.
 
 3.7.0 (2009-03-14)
-------------------
+==================
 
 Initial release. This package was split off from ``zope.app.security`` to
 provide a separate common interface definition for authentication utilities

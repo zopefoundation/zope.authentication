@@ -31,13 +31,16 @@ except NameError:
 def checkPrincipal(context, principal_id):
     """An utility function to check if there's a principal for given principal id.
 
-    Raises ValueError when principal doesn't exists for given context and
+    Raises :exc:`ValueError` when principal doesn't exists for given context and
     principal id.
 
     To test it, let's create and register a dummy authentication utility.
 
+      >>> from zope.authentication.interfaces import IAuthentication
+      >>> from zope.authentication.interfaces import PrincipalLookupError
+      >>> from zope.interface import implementer
       >>> @implementer(IAuthentication)
-      ... class DummyUtility:
+      ... class DummyUtility(object):
       ...
       ...     def getPrincipal(self, id):
       ...         if id == 'bob':
@@ -47,8 +50,9 @@ def checkPrincipal(context, principal_id):
       >>> from zope.component import provideUtility
       >>> provideUtility(DummyUtility())
 
-    Now, let's the behaviour of this function.
+    Now, let's check the behaviour of this function.
 
+      >>> from zope.authentication.principal import checkPrincipal
       >>> checkPrincipal(None, 'bob')
       >>> checkPrincipal(None, 'dan')
       Traceback (most recent call last):
@@ -67,7 +71,11 @@ def checkPrincipal(context, principal_id):
 
 @implementer(IPrincipalSource, ISourceQueriables)
 class PrincipalSource(object):
-    """Generic Principal Source"""
+    """Generic Principal Source
+
+    Implements :class:`zope.authentication.interfaces.IPrincipalSource`
+    and :class:`zope.schema.interfaces.ISourceQueriables`.
+    """
 
     def __contains__(self, id):
         """Test for the existence of a user.
@@ -81,8 +89,10 @@ class PrincipalSource(object):
         First we need to create a dummy utility that will return a user, if
         the id is 'bob'.
 
+        >>> from zope.authentication.interfaces import IAuthentication
+        >>> from zope.interface import implementer
         >>> @implementer(IAuthentication)
-        ... class DummyUtility:
+        ... class DummyUtility(object):
         ...     def getPrincipal(self, id):
         ...         if id == 'bob':
         ...             return id
@@ -95,6 +105,7 @@ class PrincipalSource(object):
 
         Now initialize the principal source and test the method
 
+        >>> from zope.authentication.principal import PrincipalSource
         >>> source = PrincipalSource()
         >>> 'jim' in source
         False
@@ -117,14 +128,15 @@ class PrincipalSource(object):
         various queriables). This method will walk up through all of the
         authentication utilities to look for queriables.
 
+        >>> from zope.schema.interfaces import ISourceQueriables
         >>> @implementer(IAuthentication)
-        ... class DummyUtility1:
+        ... class DummyUtility1(object):
         ...     __parent__ = None
         ...     def __repr__(self): return 'dummy1'
         >>> dummy1 = DummyUtility1()
 
         >>> @implementer(ISourceQueriables, IAuthentication)
-        ... class DummyUtility2:
+        ... class DummyUtility2(object):
         ...     __parent__ = None
         ...     def getQueriables(self):
         ...         return ('1', 1), ('2', 2), ('3', 3)
@@ -143,6 +155,7 @@ class PrincipalSource(object):
         >>> from zope.component import provideUtility
         >>> provideUtility(dummy1)
 
+        >>> from zope.authentication.principal import PrincipalSource
         >>> source = PrincipalSource()
         >>> list(source.getQueriables())
         [(u'0', dummy1), (u'1.1', 1), (u'1.2', 2), (u'1.3', 3), (u'2.4', 4)]
@@ -170,7 +183,11 @@ class PrincipalSource(object):
 @implementer(ITerms)
 @adapter(IPrincipalSource, Interface)
 class PrincipalTerms(object):
-
+    """
+    Implementation of :class:`zope.browser.interfaces.ITerms` given a
+    :class:`zope.authentication.interfaces.IPrincipalSource` and
+    request object.
+    """
 
     def __init__(self, context, request):
         self.context = context
@@ -188,6 +205,10 @@ class PrincipalTerms(object):
         return base64.b64decode(token.replace('_', '=').encode()).decode('utf-8')
 
     def getTerm(self, principal_id):
+        """Return a :class:`PrincipalTerm` for the given ID.
+
+        If no such principal can be found, raises :exc:`LooupError`.
+        """
         if principal_id not in self.context:
             raise LookupError(principal_id)
 
@@ -201,10 +222,16 @@ class PrincipalTerms(object):
         return PrincipalTerm(self._encode(principal_id), principal.title)
 
     def getValue(self, token):
+        """Return the principal ID given its token."""
         return self._decode(token)
 
 
 class PrincipalTerm(object):
+    """
+    A principal term.
+
+    We have a ``token`` based on the encoded principal ID, and a ``title``.
+    """
 
     def __init__(self, token, title):
         self.token = token

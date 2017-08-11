@@ -23,14 +23,16 @@ from zope.authentication.interfaces import ILogout, ILogoutSupported
 @adapter(IAuthentication)
 @implementer(ILogout)
 class NoLogout(object):
-    """An adapter for IAuthentication utilities that don't implement ILogout."""
-
+    """
+    An adapter for :class:`~.IAuthentication` utilities that don't
+    implement :class:`~.ILogout`.
+    """
 
     def __init__(self, auth):
         pass
 
     def logout(self, request):
-        pass
+        """Does nothing."""
 
 
 @adapter(Interface)
