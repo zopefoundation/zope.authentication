@@ -37,6 +37,10 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
+TESTS_REQUIRE = [
+    'zope.testing',
+    'zope.testrunner',
+]
 
 setup(name='zope.authentication',
       version='4.4.dev0',
@@ -67,28 +71,30 @@ setup(name='zope.authentication',
           'Natural Language :: English',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
-          'Framework :: Zope3'],
-      url='http://pypi.python.org/pypi/zope.authentication',
+          'Framework :: Zope3',
+      ],
+      url='https://zopeauthentication.readthedocs.io/',
       license='ZPL 2.1',
       packages=find_packages('src'),
       package_dir={'': 'src'},
       namespace_packages=['zope'],
-      extras_require=dict(
-          test=[
-              'zope.testing',
-          ]),
-      install_requires=['setuptools',
-                        'zope.browser',
-                        'zope.component>=3.6.0',
-                        'zope.i18nmessageid',
-                        'zope.interface',
-                        'zope.schema',
-                        'zope.security',
-                        ],
-      tests_require=[
-          'zope.testing',
-          'zope.testrunner',
+      extras_require={
+          'test': TESTS_REQUIRE,
+          'docs': {
+              'Sphinx',
+              'repoze.sphinx.autointerface',
+          },
+      },
+      install_requires=[
+          'setuptools',
+          'zope.browser',
+          'zope.component>=3.6.0',
+          'zope.i18nmessageid',
+          'zope.interface',
+          'zope.schema',
+          'zope.security',
       ],
+      tests_require=TESTS_REQUIRE,
       test_suite='__main__.alltests',
       include_package_data=True,
       zip_safe=False,

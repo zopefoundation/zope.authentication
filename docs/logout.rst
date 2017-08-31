@@ -7,7 +7,7 @@ Logout Support
    setUp()
 
 Logout support is defined by a simple interface
-:class:`zope.authentication.interfacesILogout`:
+:class:`zope.authentication.interfaces.ILogout`:
 
 .. doctest::
 
@@ -16,9 +16,9 @@ Logout support is defined by a simple interface
 that has a single 'logout' method.
 
 The current use of ILogout is to adapt an
-:class:`from zope.authentication.interfaces.IAuthentication` instance to
-``ILogout``.  To illustrate, we'll create a simple logout implementation that
-adapts ``IAuthentication``:
+:class:`zope.authentication.interfaces.IAuthentication` instance to
+:class:`~.ILogout`.  To illustrate, we'll create a simple logout implementation that
+adapts :class:`~.IAuthentication`:
 
 .. doctest::
 
@@ -47,7 +47,7 @@ and something to represent an authentication utility:
 
    >>> auth = Authentication()
 
-To perform a logout, we adapt auth to ILogout and call 'logout':
+To perform a logout, we adapt auth to ``ILogout`` and call 'logout':
 
 .. doctest::
 

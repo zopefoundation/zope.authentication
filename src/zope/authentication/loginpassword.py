@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Login/Password provider. 
+"""Login/Password provider.
 """
 from zope.interface import implementer
 from zope.authentication.interfaces import ILoginPassword
@@ -19,11 +19,10 @@ from zope.authentication.interfaces import ILoginPassword
 
 @implementer(ILoginPassword)
 class LoginPassword(object):
-    """Basic ILoginPassword implementation.
-    
+    """Basic :class:`zope.authentication.interfaces.ILoginPassword` implementation.
+
     This class can be used as a base for implementing ILoginPassword adapters.
     """
-
 
     def __init__(self, login, password):
         self.__login = login

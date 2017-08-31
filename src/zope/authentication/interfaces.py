@@ -56,7 +56,7 @@ class IAuthentication(Interface):
     This is implemented by performing protocol-specific actions, such as
     issuing challenges or providing login interfaces.
 
-    `IAuthentication` objects are used to implement authentication
+    :class:`IAuthentication` objects are used to implement authentication
     utilities. Because they implement utilities, they are expected to
     collaborate with utilities in other contexts. Client code doesn't search a
     context and call multiple utilities. Instead, client code will call the
@@ -77,22 +77,22 @@ class IAuthentication(Interface):
         The request object is fairly opaque. We may decide
         that it implements some generic request interface.
 
-        Implementation note
+        .. note::
 
-        It is likely that the component will dispatch
-        to another component based on the actual
-        request interface. This will allow different
-        kinds of requests to be handled correctly.
+           Implementation note: It is likely that the component will dispatch
+           to another component based on the actual
+           request interface. This will allow different
+           kinds of requests to be handled correctly.
 
-        For example, a component that authenticates
-        based on user names and passwords might request
-        an adapter for the request as in::
+           For example, a component that authenticates
+           based on user names and passwords might request
+           an adapter for the request as in::
 
-          getpw = getAdapter(request, context=self)
+              getpw = getAdapter(request, context=self)
 
-        The `context` keyword argument is used to control
-        where the ILoginPassword component is searched for.
-        This is necessary because requests are placeless.
+           The ``context`` keyword argument is used to control
+           where the :class:`ILoginPassword` component is searched for.
+           This is necessary because requests are placeless.
         """
 
     def unauthenticatedPrincipal():
@@ -100,7 +100,7 @@ class IAuthentication(Interface):
 
         Return None if no unauthenticated principal is defined.
 
-        The unauthenticated principal must provide IUnauthenticatedPrincipal.
+        The unauthenticated principal must provide :class:`IUnauthenticatedPrincipal`.
         """
 
     def unauthorized(id, request):
@@ -124,8 +124,8 @@ class IAuthentication(Interface):
     def getPrincipal(id):
         """Get principal meta-data.
 
-        Returns an object of type IPrincipal for the given principal
-        id. A PrincipalLookupError is raised if the principal cannot be
+        Returns an object of type :class:`~.IPrincipal` for the given principal
+        id. A :class:`PrincipalLookupError` is raised if the principal cannot be
         found.
 
         Note that the authentication utility nearest to the requested
@@ -138,7 +138,7 @@ class IAuthentication(Interface):
 class ILoginPassword(Interface):
     """A password based login.
 
-    An `IAuthentication` utility may use this (adapting a request),
+    An :class:`IAuthentication` utility may use this (adapting a request),
     to discover the login/password passed from the user, or to
     indicate that a login is required.
     """
