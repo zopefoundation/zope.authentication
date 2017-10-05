@@ -10,7 +10,7 @@
         :target: https://pypi.org/project/zope.authentication/
         :alt: Supported Python versions
 
-.. image:: https://travis-ci.org/zopefoundation/zope.authentication.png?branch=master
+.. image:: https://travis-ci.org/zopefoundation/zope.authentication.svg?branch=master
         :target: https://travis-ci.org/zopefoundation/zope.authentication
 
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.authentication/badge.svg?branch=master
