@@ -1,9 +1,9 @@
-================================
- ``zope.authentication`` README
-================================
+=====================
+ zope.authentication
+=====================
 
 .. image:: https://img.shields.io/pypi/v/zope.authentication.svg
-        :target: https://pypi.python.org/pypi/zope.authentication/
+        :target: https://pypi.org/project/zope.authentication/
         :alt: Latest release
 
 .. image:: https://img.shields.io/pypi/pyversions/zope.authentication.svg

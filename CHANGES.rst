@@ -7,6 +7,12 @@
 
 - Host documentation at https://zopeauthentication.readthedocs.io
 
+- Add support for Python 3.7.
+
+- Drop support for Python 3.3.
+
+- Drop support for ``python setup.py test``.
+
 
 4.3.0 (2017-05-11)
 ==================
