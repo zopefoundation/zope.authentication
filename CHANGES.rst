@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.4.0 (unreleased)
+4.4.0 (2018-08-24)
 ==================
 
 - Host documentation at https://zopeauthentication.readthedocs.io
