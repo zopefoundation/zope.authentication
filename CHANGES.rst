@@ -2,10 +2,12 @@
  Changes
 =========
 
-4.4.1 (unreleased)
+4.5.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add support for Python 3.8.
+
+- Drop support for Python 3.4.
 
 
 4.4.0 (2018-08-24)
