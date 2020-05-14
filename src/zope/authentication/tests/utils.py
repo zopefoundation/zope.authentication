@@ -15,8 +15,8 @@
 #   Forked from zope.component.nextutility in 3.10.x.
 #
 from zope.interface import implementer
-from zope.component.interfaces import IComponentLookup
-from zope.component.interfaces import IComponents
+from zope.interface.interfaces import IComponentLookup
+from zope.interface.interfaces import IComponents
 
 
 @implementer(IComponents)
