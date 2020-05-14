@@ -28,11 +28,12 @@ except NameError:
     # Py3: define unicode.
     unicode = str
 
-def checkPrincipal(context, principal_id):
-    """An utility function to check if there's a principal for given principal id.
 
-    Raises :exc:`ValueError` when principal doesn't exists for given context and
-    principal id.
+def checkPrincipal(context, principal_id):
+    """Utility function to check if there's a principal for given principal id.
+
+    Raises :exc:`ValueError` when principal doesn't exists for given context
+    and principal id.
 
     To test it, let's create and register a dummy authentication utility.
 
@@ -202,7 +203,8 @@ class PrincipalTerms(object):
         return res.decode()
 
     def _decode(self, token):
-        return base64.b64decode(token.replace('_', '=').encode()).decode('utf-8')
+        return base64.b64decode(
+            token.replace('_', '=').encode()).decode('utf-8')
 
     def getTerm(self, principal_id):
         """Return a :class:`PrincipalTerm` for the given ID.
