@@ -34,7 +34,8 @@ class IFallbackUnauthenticatedPrincipal(IUnauthenticatedPrincipal):
 
     This principal can be used by publications to set on a request if
     no principal, not even an unauthenticated principal, was returned
-    by any authentication utility to fulfill the contract of IApplicationRequest.
+    by any authentication utility to fulfil the contract of
+    IApplicationRequest.
     """
 
 
@@ -100,7 +101,8 @@ class IAuthentication(Interface):
 
         Return None if no unauthenticated principal is defined.
 
-        The unauthenticated principal must provide :class:`IUnauthenticatedPrincipal`.
+        The unauthenticated principal must provide
+        :class:`IUnauthenticatedPrincipal`.
         """
 
     def unauthorized(id, request):
@@ -125,8 +127,8 @@ class IAuthentication(Interface):
         """Get principal meta-data.
 
         Returns an object of type :class:`~.IPrincipal` for the given principal
-        id. A :class:`PrincipalLookupError` is raised if the principal cannot be
-        found.
+        id. A :class:`PrincipalLookupError` is raised if the principal cannot
+        be found.
 
         Note that the authentication utility nearest to the requested
         resource is called. It is up to authentication utility
@@ -157,6 +159,7 @@ class ILoginPassword(Interface):
 
         The realm argument is the name of the principal registry.
         """
+
 
 class IPrincipalSource(ISource):
     """A Source of Principal Ids"""

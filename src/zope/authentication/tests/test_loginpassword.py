@@ -17,6 +17,7 @@ import unittest
 
 from zope.authentication.loginpassword import LoginPassword
 
+
 class Test(unittest.TestCase):
 
     def testLoginPassword(self):
@@ -32,7 +33,8 @@ class Test(unittest.TestCase):
         lp = LoginPassword("tim", None)
         self.assertEqual(lp.getLogin(), "tim")
         self.assertEqual(lp.getPassword(), "")
-        lp.needLogin("tim") # This method should exist
+        lp.needLogin("tim")  # This method should exist
+
 
 def test_suite():
     return unittest.TestSuite((

@@ -40,6 +40,5 @@ class NoLogout(object):
 class LogoutSupported(object):
     """A class that can be registered as an adapter to flag logout support."""
 
-
     def __init__(self, dummy):
         pass

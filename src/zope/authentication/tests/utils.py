@@ -15,8 +15,9 @@
 #   Forked from zope.component.nextutility in 3.10.x.
 #
 from zope.interface import implementer
-from zope.component.interfaces import IComponentLookup
-from zope.component.interfaces import IComponents
+from zope.interface.interfaces import IComponentLookup
+from zope.interface.interfaces import IComponents
+
 
 @implementer(IComponents)
 class SiteManagerStub(object):
@@ -35,6 +36,7 @@ class SiteManagerStub(object):
     def queryUtility(self, iface, name='', default=None):
         return self._utils.get((iface, name), default)
 
+
 def testingNextUtility(utility, nextutility, interface, name='',
                        sitemanager=None, nextsitemanager=None):
     if sitemanager is None:
@@ -47,9 +49,9 @@ def testingNextUtility(utility, nextutility, interface, name='',
     utility.__conform__ = (
         lambda iface:
         iface.isOrExtends(IComponentLookup) and sitemanager or None
-        )
+    )
     nextsitemanager.provideUtility(interface, nextutility, name)
     nextutility.__conform__ = (
         lambda iface:
         iface.isOrExtends(IComponentLookup) and nextsitemanager or None
-        )
+    )
