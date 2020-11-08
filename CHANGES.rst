@@ -5,9 +5,9 @@
 4.5.0 (unreleased)
 ==================
 
-- Add support for Python 3.8.
+- Add support for Python 3.8 and 3.9.
 
-- Drop support for Python 3.4.
+- Drop support for Python 3.4 and 3.5.
 
 
 4.4.0 (2018-08-24)
