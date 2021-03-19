@@ -9,6 +9,8 @@
 
 - Drop support for Python 3.4.
 
+- Fix deprecated test imports from zope.component to use the correct
+  imports from zope.interface.
 
 4.4.0 (2018-08-24)
 ==================
