@@ -14,8 +14,9 @@
 """Authentication interfaces
 """
 from zope.interface import Interface
-from zope.security.interfaces import IPrincipal, IGroup
 from zope.schema.interfaces import ISource
+from zope.security.interfaces import IGroup
+from zope.security.interfaces import IPrincipal
 
 
 class PrincipalLookupError(LookupError):
