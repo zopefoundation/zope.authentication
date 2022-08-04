@@ -13,11 +13,12 @@
 ##############################################################################
 """ILogout implementations
 """
-from zope.component import adapter
-from zope.interface import implementer, Interface
-
 from zope.authentication.interfaces import IAuthentication
-from zope.authentication.interfaces import ILogout, ILogoutSupported
+from zope.authentication.interfaces import ILogout
+from zope.authentication.interfaces import ILogoutSupported
+from zope.component import adapter
+from zope.interface import Interface
+from zope.interface import implementer
 
 
 @adapter(IAuthentication)

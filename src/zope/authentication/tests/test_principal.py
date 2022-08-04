@@ -16,7 +16,9 @@
 import doctest
 import re
 import unittest
+
 from zope.testing import renormalizing
+
 
 checker = renormalizing.RENormalizing([
     # Python 3 strings remove the "u".

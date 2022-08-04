@@ -14,13 +14,18 @@
 """Principal source and helper function
 """
 import base64
+
+from zope.authentication.interfaces import IAuthentication
+from zope.authentication.interfaces import IPrincipalSource
+from zope.authentication.interfaces import PrincipalLookupError
 from zope.browser.interfaces import ITerms
-from zope.component import getUtility, queryNextUtility, adapter
-from zope.interface import implementer, Interface
+from zope.component import adapter
+from zope.component import getUtility
+from zope.component import queryNextUtility
+from zope.interface import Interface
+from zope.interface import implementer
 from zope.schema.interfaces import ISourceQueriables
 
-from zope.authentication.interfaces import IAuthentication, IPrincipalSource
-from zope.authentication.interfaces import PrincipalLookupError
 
 try:
     unicode
