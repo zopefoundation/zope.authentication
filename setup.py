@@ -30,7 +30,7 @@ TESTS_REQUIRE = [
 ]
 
 setup(name='zope.authentication',
-      version='5.0.dev0',
+      version='5.0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Definition of authentication basics for the Zope Framework',
