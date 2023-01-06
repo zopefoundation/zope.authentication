@@ -15,9 +15,6 @@
 """
 import base64
 
-from zope.authentication.interfaces import IAuthentication
-from zope.authentication.interfaces import IPrincipalSource
-from zope.authentication.interfaces import PrincipalLookupError
 from zope.browser.interfaces import ITerms
 from zope.component import adapter
 from zope.component import getUtility
@@ -26,12 +23,9 @@ from zope.interface import Interface
 from zope.interface import implementer
 from zope.schema.interfaces import ISourceQueriables
 
-
-try:
-    unicode
-except NameError:
-    # Py3: define unicode.
-    unicode = str
+from zope.authentication.interfaces import IAuthentication
+from zope.authentication.interfaces import IPrincipalSource
+from zope.authentication.interfaces import PrincipalLookupError
 
 
 def checkPrincipal(context, principal_id):
@@ -76,7 +70,7 @@ def checkPrincipal(context, principal_id):
 
 
 @implementer(IPrincipalSource, ISourceQueriables)
-class PrincipalSource(object):
+class PrincipalSource:
     """Generic Principal Source
 
     Implements :class:`zope.authentication.interfaces.IPrincipalSource`
@@ -164,7 +158,7 @@ class PrincipalSource(object):
         >>> from zope.authentication.principal import PrincipalSource
         >>> source = PrincipalSource()
         >>> list(source.getQueriables())
-        [(u'0', dummy1), (u'1.1', 1), (u'1.2', 2), (u'1.3', 3), (u'2.4', 4)]
+        [('0', dummy1), ('1.1', 1), ('1.2', 2), ('1.3', 3), ('2.4', 4)]
         """
         i = 0
         auth = getUtility(IAuthentication)
@@ -172,13 +166,13 @@ class PrincipalSource(object):
         while True:
             queriables = ISourceQueriables(auth, None)
             if queriables is None:
-                yield unicode(i), auth
+                yield str(i), auth
             else:
                 for qid, queriable in queriables.getQueriables():
                     # ensure that we dont return same yielded utility more
                     # then once
                     if queriable not in yielded:
-                        yield unicode(i)+'.'+unicode(qid), queriable
+                        yield f'{i}.{qid}', queriable
                         yielded.append(queriable)
             auth = queryNextUtility(auth, IAuthentication)
             if auth is None:
@@ -188,7 +182,7 @@ class PrincipalSource(object):
 
 @implementer(ITerms)
 @adapter(IPrincipalSource, Interface)
-class PrincipalTerms(object):
+class PrincipalTerms:
     """
     Implementation of :class:`zope.browser.interfaces.ITerms` given a
     :class:`zope.authentication.interfaces.IPrincipalSource` and
@@ -199,10 +193,8 @@ class PrincipalTerms(object):
         self.context = context
 
     def _encode(self, id):
-        # Py3: In Python 2, principal_id can be a str, but in Python 3 it is
-        # always unicode/str.
-        if isinstance(id, unicode):
-            id = id.encode('utf-8')
+        # principal_id is always str:
+        id = id.encode('utf-8')
 
         res = base64.b64encode(id).strip().replace(b'=', b'_')
         return res.decode()
@@ -233,7 +225,7 @@ class PrincipalTerms(object):
         return self._decode(token)
 
 
-class PrincipalTerm(object):
+class PrincipalTerm:
     """
     A principal term.
 
