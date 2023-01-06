@@ -20,7 +20,7 @@ from zope.interface.interfaces import IComponents
 
 
 @implementer(IComponents)
-class SiteManagerStub(object):
+class SiteManagerStub:
 
     __bases__ = ()
 

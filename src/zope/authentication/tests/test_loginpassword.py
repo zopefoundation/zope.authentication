@@ -38,5 +38,5 @@ class Test(unittest.TestCase):
 
 def test_suite():
     return unittest.TestSuite((
-        unittest.makeSuite(Test),
+        unittest.defaultTestLoader.loadTestsFromTestCase(Test),
     ))

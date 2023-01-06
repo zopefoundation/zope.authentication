@@ -13,12 +13,13 @@
 ##############################################################################
 """Login/Password provider.
 """
-from zope.authentication.interfaces import ILoginPassword
 from zope.interface import implementer
+
+from zope.authentication.interfaces import ILoginPassword
 
 
 @implementer(ILoginPassword)
-class LoginPassword(object):
+class LoginPassword:
     """Basic :class:`zope.authentication.interfaces.ILoginPassword`
     implementation.
 

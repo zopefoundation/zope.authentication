@@ -71,9 +71,7 @@ setup(name='zope.authentication',
               'repoze.sphinx.autointerface',
           },
       },
-      python_requires=','.join([
-          '>=3.7',
-      ]),
+      python_requires='>=3.7',
       install_requires=[
           'setuptools',
           'zope.browser',
