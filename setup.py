@@ -81,7 +81,6 @@ setup(name='zope.authentication',
           'zope.schema',
           'zope.security',
       ],
-      tests_require=TESTS_REQUIRE,
       include_package_data=True,
       zip_safe=False,
       )
