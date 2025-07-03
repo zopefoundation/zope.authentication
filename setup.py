@@ -15,7 +15,6 @@
 """
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -26,7 +25,7 @@ def read(*rnames):
 
 TESTS_REQUIRE = [
     'zope.testing',
-    'zope.testrunner',
+    'zope.testrunner >= 6.4',
 ]
 
 setup(name='zope.authentication',
@@ -61,9 +60,6 @@ setup(name='zope.authentication',
       ],
       url='https://zopeauthentication.readthedocs.io/',
       license='ZPL-2.1',
-      packages=find_packages('src'),
-      package_dir={'': 'src'},
-      namespace_packages=['zope'],
       extras_require={
           'test': TESTS_REQUIRE,
           'docs': {
