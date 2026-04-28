@@ -62,10 +62,10 @@ setup(name='zope.authentication',
       license='ZPL-2.1',
       extras_require={
           'test': TESTS_REQUIRE,
-          'docs': {
+          'docs': [
               'Sphinx',
               'repoze.sphinx.autointerface',
-          },
+          ],
       },
       python_requires='>=3.10',
       install_requires=[
